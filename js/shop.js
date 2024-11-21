@@ -107,7 +107,11 @@ function buy(productId) {
 }
 
 // Exercise 2
-function cleanCart() {}
+function cleanCart() {
+
+    cart.splice(0, cart.length);
+    console.log(`Cart has been cleaned: ${cart}`);
+}
 
 // Exercise 3
 function calculateTotal() {
