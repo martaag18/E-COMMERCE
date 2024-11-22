@@ -104,18 +104,24 @@ function buy(productId) {
   }
 
   console.log(`Updated cart: `, cart);
+
+  calculateTotal(cart);
 }
 
 // Exercise 2
 function cleanCart() {
-
-    cart.splice(0, cart.length);
-    console.log(`Cart has been cleaned: ${cart}`);
+  cart.splice(0, cart.length);
+  console.log(`Cart has been cleaned: ${cart}`);
 }
 
 // Exercise 3
-function calculateTotal() {
-  // Calculate total price of the cart using the "cartList" array
+function calculateTotal(cart) {
+  let sumCartImport = 0;
+
+  for (let i = 0; i < cart.length; i++) {
+    sumCartImport += sumCartImport + cart[i].price * cart[i].quantity;
+  }
+  console.log(`Total import: ${sumCartImport}`);
 }
 
 // Exercise 4
