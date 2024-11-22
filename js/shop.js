@@ -106,6 +106,7 @@ function buy(productId) {
   console.log(`Updated cart: `, cart);
 
   calculateTotal(cart);
+  applyPromotionsCart(cart);
 }
 
 // Exercise 2
@@ -119,16 +120,35 @@ function calculateTotal(cart) {
   let sumCartImport = 0;
 
   for (let i = 0; i < cart.length; i++) {
-    sumCartImport += sumCartImport + cart[i].price * cart[i].quantity;
+    sumCartImport += cart[i].price * cart[i].quantity;
   }
   console.log(`Total import: ${sumCartImport}`);
 }
 
 // Exercise 4
-function applyPromotionsCart() {
-  // Apply promotions to each item in the array "cart"
-}
 
+function applyPromotionsCart(cart) {
+  let subtotalWithDiscount = 0;
+
+  for (let i = 0; i < cart.length; i++) {
+    const product = cart[i];
+
+    if (product.id === 1 && product.quantity >= 3) {
+      product.price = product.price * 0.8;
+      console.log(`Product: ${product.name} New Price: ${product.price}`);
+    }
+    if (product.id === 3 && product.quantity >= 10) {
+      product.price = product.price * 0.7;
+      console.log(`Product: ${product.name} New Price: ${product.price}`);
+    }
+
+    subtotalWithDiscount += product.price * product.quantity;
+  }
+
+  console.log(
+    `New import with applied discounts: ${subtotalWithDiscount.toFixed(2)}`
+  );
+}
 // Exercise 5
 function printCart() {
   // Fill the shopping cart modal manipulating the shopping cart dom
