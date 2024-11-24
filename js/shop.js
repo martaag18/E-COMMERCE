@@ -150,8 +150,42 @@ function applyPromotionsCart(cart) {
   );
 }
 // Exercise 5
+
 function printCart() {
-  // Fill the shopping cart modal manipulating the shopping cart dom
+  //1. Seleccionar parte HTML que queremos modificar:
+  const $cartTable = document.querySelector(
+    "#cartModal .modal-body #cart_list"
+  );
+  const $totalElement = document.querySelector(
+    "#cartModal .modal-body #total_price"
+  );
+  console.log("Cart Table:", $cartTable);
+  console.log("Total Element:", $totalElement);
+
+  let cartHTML = "";
+  let cartTotal = 0;
+
+  //Recorremos array cart: 1.Sumamos total precio producto + acumulamos total productos + recorremos informacion (name, price, quantity)
+
+  for (let i = 0; i < cart.length; i++) {
+    const productTotal = cart[i].price * cart[i].quantity; //Sumar total precio producto
+    cartTotal = cartTotal + productTotal; //Sumar total cart
+
+    //Mostrar name, price, quantity, productTotal en HTML
+    cartHTML += `
+    <tr>
+      <th scope="row">${cart[i].name}</th>
+      <td>${cart[i].price.toFixed(2)}</td>
+      <td>${cart[i].quantity}</td>
+      <td>${productTotal.toFixed(2)}</td> 
+    </tr>
+`;
+  }
+
+  //Insertamos info cart al HTML:
+
+  $cartTable.innerHTML = cartHTML;
+  $totalElement.innerHTML = `Total: ${cartTotal.toFixed(2)} €`;
 }
 
 // ** Nivell II **
