@@ -105,18 +105,21 @@ function buy(productId) {
 
   console.log(`Updated cart: `, cart);
 
-  calculateTotal(cart);
-  applyPromotionsCart(cart);
+  calculateTotal();
+  applyPromotionsCart();
 }
 
 // Exercise 2
 function cleanCart() {
+
   cart.splice(0, cart.length);
   console.log(`Cart has been cleaned: ${cart}`);
+
+ printCart();
 }
 
 // Exercise 3
-function calculateTotal(cart) {
+function calculateTotal() {
   let sumCartImport = 0;
 
   for (let i = 0; i < cart.length; i++) {
@@ -127,7 +130,7 @@ function calculateTotal(cart) {
 
 // Exercise 4
 
-function applyPromotionsCart(cart) {
+function applyPromotionsCart() {
   let subtotalWithDiscount = 0;
 
   for (let i = 0; i < cart.length; i++) {
@@ -191,7 +194,25 @@ function printCart() {
 // ** Nivell II **
 
 // Exercise 7
-function removeFromCart(id) {}
+function removeFromCart(id) {
+  //Restar quantity producto -> Recorrer array card
+
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].id === id) {
+      cart[i].quantity -= 1;
+    }
+  }
+
+  //Filtrar productos con qty > 0
+
+  cart = cart.filter((item) => {
+    return item.quantity > 0;
+  });
+  
+  calculateTotal(); //Actualizar total
+  applyPromotionsCart(); //Actualizar promociones
+  printCart(); //Actualizar HTML
+}
 
 function open_modal() {
   printCart();
