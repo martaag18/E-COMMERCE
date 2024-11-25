@@ -105,6 +105,14 @@ function buy(productId) {
 
   console.log(`Updated cart: `, cart);
 
+  //Update count_product
+
+  const $countProduct = document.getElementById("count_product");
+  const totalCountProduct = cart.reduce((sum,item) => { //sum = acumulador / item=elemento actual array que recorremos en cada iteración
+    return sum + item.quantity;
+  }, 0);
+  $countProduct.innerHTML = totalCountProduct;
+
   calculateTotal();
   applyPromotionsCart();
 }
